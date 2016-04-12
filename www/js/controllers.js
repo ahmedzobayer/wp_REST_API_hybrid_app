@@ -13,6 +13,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // Form data for the login modal
   $scope.loginData = {};
+  
+
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -44,7 +46,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 
-app.controller('HomeCtrl', function($scope, $http, $ionicLoading, $ionicSlideBoxDelegate) {
+app.controller('HomeCtrl', function($scope, $http, $ionicLoading, $ionicSlideBoxDelegate, $location) {
     
     $ionicLoading.show({
         template: '<img src="img/loading-gif4.gif" width="60" height="60"/>'
@@ -60,9 +62,18 @@ app.controller('HomeCtrl', function($scope, $http, $ionicLoading, $ionicSlideBox
          })
         
       }
-              
+	  	   	 
+
+			 // Open the cart modal
+			$scope.go = function ( path ) {
+			  $location.path( path );
+			}
+      	  
      $scope.getPosts();
-    
+	 
+	 
+
+	    
     
   
     //refresh page
@@ -103,11 +114,16 @@ app.directive('imageonload', function() {
     };
 });
 
-app.controller('SingleCtrl', function($scope, $stateParams, $http, $ionicLoading, $cordovaSocialSharing) {
+app.controller('SingleCtrl', function($scope, $stateParams, $http, $ionicLoading, $cordovaSocialSharing, $location) {
      
     $ionicLoading.show({
         template: '<img src="img/loading-gif4.gif" width="60" height="60"/>'
       });
+	  
+	  	// Open the cart modal
+			$scope.go = function ( path ) {
+			  $location.path( path );
+			};
     
     return $http.get(siteUrl + '?filter[post_status]=publish&filter[posts_per_page]=50&filter[orderby]=date')
     .success(function(data){
@@ -115,13 +131,43 @@ app.controller('SingleCtrl', function($scope, $stateParams, $http, $ionicLoading
         //console.log($scope.singlePost);
         $ionicLoading.hide();
     });
+	
+
     
-    $scope.shareAnywhere = function() {
-        $cordovaSocialSharing.share("This na your message", $scope.singlePost.title);
+});
+
+app.controller('CartCtrl', function($scope, $stateParams, $http, $ionicLoading, $cordovaSocialSharing) {
+     
+    $ionicLoading.show({
+        template: '<img src="img/loading-gif4.gif" width="60" height="60"/>'
+      });
+    
+    return $http.get(siteUrl + '?filter[post_status]=publish&filter[posts_per_page]=50&filter[orderby]=date')
+    .success(function(data){
+        $scope.Post = data;
+        //console.log($scope.singlePost);
+        $ionicLoading.hide();
+    });
+	
+
+    
+});
+
+app.controller('MenuCtrl', function($scope, $http) {
+
+	         //get catagory
+      $scope.getCategorys = function() {
+        $http.get('http://muktopata.com/wp-json/wp/v2/product_category')
+         .success(function(data) {
+           $scope.categorys = data;
+            //$ionicSlideBoxDelegate.update();
+         })
         
-    }
-    
-    
+      }
+              
+     $scope.getCategorys();
+
+        
 });
 
 app.filter('fromNow', function() {
@@ -129,3 +175,22 @@ app.filter('fromNow', function() {
     return moment(date).fromNow();
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

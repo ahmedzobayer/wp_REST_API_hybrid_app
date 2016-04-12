@@ -33,11 +33,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.cart', {
+    url: '/cart',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/cart.html',
+		controller: 'CartCtrl'
       }
     }
   })
@@ -59,6 +60,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+	
+	    .state('app.menu', {
+      url: '/menu',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/menu.html',
+          controller: 'MenuCtrl'
+        }
+      }
+    })
+	
+	
 
   .state('app.single', {
     url: '/single/:id',
