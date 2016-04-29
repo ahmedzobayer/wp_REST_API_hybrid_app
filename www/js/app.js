@@ -38,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/cart.html',
-		controller: 'CartCtrl'
+   
       }
     }
   })
@@ -51,6 +51,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    
+  
     .state('app.home', {
       url: '/home',
       views: {

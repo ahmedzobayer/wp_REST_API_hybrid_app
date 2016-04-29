@@ -1,12 +1,55 @@
 <ion-view view-title="Cart">
-  <ion-content>
-      <ion-list>
-      <ion-item class="item-remove-animate" ng-repeat="post in posts">
-        {{singlePost.title.rendered}}
-		<ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+
+      
+        <!--list show-->
+   <ion-content>
+   <!--    <ion-list show-delete="data.showDelete" show-reorder="data.showReorder"> -->
+         <!--refresher-->
+         <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+        </ion-refresher>
+     
+          
+  <!--      FOR CART ADD BUTTON  -->
+        
+        <div ng:controller="CartForm">
+    <table class="table">
+        <tr>
+            
+            <th><ion-item>Description</ion-item></th>
+            <th><ion-item>Qty</ion-item></th>
+            <th><ion-item>Cost</ion-item></th>
+            <th><ion-item>Total</ion-item></th>
+            <th></th>
+        </tr></ion-item>
+        <tr ng:repeat="item in invoice.items"><ion-item>
+            <td><ion-item><input type="text" ng:model="item.description" class="input-small"></ion-item></td>           
+            <td><ion-item><input type="number" min="0" ng:model="item.qty" ng:required class="input-mini"></ion-item></td>
+            <td><ion-item><input type="text" ng:model="item.cost" class="input-small"></ion-item></td>
+            <td><ion-item>{{item.qty * item.cost | currency}}</ion-item></td>
+            <td>
+			
+			<button  class="button button-icon ion-trash-a" ng-click="removeItem($index)"></button>
+               
+           </td>
+       </tr>
+        <tr>
+            <td><ion-item><a href ng:click="addItem()" class="btn btn-small">add item</a></ion-item></td>
+            <td></td>
+            <td><ion-item>Total:</ion-item></td>
+            <td><ion-item>{{total() | currency}}</ion-item></td>
+        </tr>
+    </table>
+</div>
+       
+    <!--</ion-list>-->
   </ion-content>
+  
 </ion-view>
+
+ 
+ 
+ 
+ 
+ 

@@ -2,8 +2,7 @@
 
 <ion-nav-buttons side="right">
         <button  class="button button-icon ion-android-cart" ng-click="go('app/cart')"></button>
-        
-      </ion-nav-buttons> 
+        </ion-nav-buttons> 
   <ion-content>
       <ion-refresher
     pulling-text="Pull to refresh..."
@@ -27,13 +26,18 @@
 					<img ng-src="{{post.better_featured_image.media_details.sizes.thumbnail.source_url}}"  imageonload/>
 				<h2 ng-bind-html="post.title.rendered | uppercase" ></h2>
 					<p ng-bind-html="post.product_qty" class="left"></p>
-					<p style="float:left; font-style:bold;"><b>&#x9f3; {{post.product_price}}</b></p><br>
-					<button  style="float:left;" class="button button-icon ion-android-add-circle" ng-click="go('app/cart')"></button>      <button style="float:right;"  class="button button-icon ion-android-remove-circle" ng-click="go('app/cart')"></button>
-
-				</a>
+					<p style="float:left; font-style:bold; margin-bottom:10px;"><b>&#x9f3; {{post.product_price}}</b></p>
+          
+           </a>
 				
-            </div>  
+       <button   class="button button-small button-assertive" ng-click="go('app/cart')">Add To Cart</button>
+
+        
+           </div>  
         </div>    
           
+       
+   
+        
   </ion-content>
 </ion-view>

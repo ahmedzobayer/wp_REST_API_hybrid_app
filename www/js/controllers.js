@@ -177,14 +177,104 @@ app.filter('fromNow', function() {
 });
 
 
+app.controller("CartForm", function ($scope) {
+  
+  
+    $scope.invoice = {
+        items: [{
+            qty: 1,
+            description: 'Cotton Pellow Cover',
+            cost: 500},
+            {
+            qty: 1,
+            description: 'AR Tech A1 Smart Watch Phone Mate For ios & Android',
+            cost: 4500},
+            {
+            qty: 1,
+            description: 'Rock DR v/s Slim Hybrid Protective Case For iPhone6 & 6s-Black',
+            cost: 1500},
+            {
+            qty: 1,
+            description: 'Revlon Concealer',
+            cost: 600},
+            {
+            qty: 1,
+            description: 'Comfoter',
+            cost: 6000},
+            {
+            qty: 1,
+            description: 'Laptop Bag',
+            cost: 4500},
+            {
+            qty: 1,
+            description: 'Skirts',
+            cost: 3500},
+            {
+            qty: 1,
+            description: 'PollowT-shirt',
+            cost: 1500},
+            {
+            qty: 1,
+            description: 'Fogg Perfume',
+            cost: 4000},
+            {
+            qty: 1,
+            description: 'Ladies Wallet',
+            cost: 1500},
+            {
+            qty: 1,
+            description: 'Pendent Necklace Jewellery',
+            cost: 2500},
+            {
+            qty: 1,
+            description: 'Women Shoes',
+            cost: 3500},
+            {
+            qty: 1,
+            description: 'Bag Pack',
+            cost: 2050},
+            {
+            qty: 1,
+            description: 'Omega skyfall 007',
+            cost: 15500},
+            {
+            qty: 1,
+            description: 'Sunglass',
+            cost: 1250},
+            {
+            qty: 1,
+            description: 'iphone 7',
+            cost: 54000},
+            {
+            qty: 1,
+            description: 'Fair & Lovely BB cream',
+            cost: 120}
+            
+            ]
+    };
 
+    $scope.addItem = function() {
+        $scope.invoice.items.push({
+            qty: 1,
+            description: '',
+            cost: 0
+        });
+    },
 
+    $scope.removeItem = function(index) {
+        $scope.invoice.items.splice(index, 1);
+    },
 
+    $scope.total = function() {
+        var total = 0;
+        angular.forEach($scope.invoice.items, function(item) {
+            total += item.qty * item.cost;
+        })
 
+        return total;
+    }
 
-
-
-
+});
 
 
 
